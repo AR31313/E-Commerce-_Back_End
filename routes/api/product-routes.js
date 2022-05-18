@@ -1,18 +1,43 @@
+//Activity 23 ORM
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
-router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+// GET all products
+router.get('/', async (req, res) => {
+  try {
+    const productData = await ProductTag.findAll({
+      include: [
+        { model: Category, attributes: ['category_name'] },
+        { model: Tag, attributes: ['tag_name'] }],
+    });
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-// get one product
+// GET one product
+//The findByPk method obtains only a single entry from the table, using the provided primary key.
+// find a single product by its `id`
+// be sure to include its associated Category and Tag data
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  try {
+    const productData = await ProductTag.findByPk(req.params.id, {
+      include: [{ model: Category, attributes: ['category_name'] },
+      { model: Tag, attributes: ['tag_name'] }],
+    });
+
+    if (!productData) {
+      res.status(404).json({ message: 'No Product found with that TagID!' });
+      return;
+    }
+
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // create new product
