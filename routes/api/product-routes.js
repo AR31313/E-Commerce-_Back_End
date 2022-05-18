@@ -7,7 +7,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // GET all products
 router.get('/', async (req, res) => {
   try {
-    const productData = await ProductTag.findAll({
+    const productData = await Product.findAll({
       include: [
         { model: Category, attributes: ['category_name'] },
         { model: Tag, attributes: ['tag_name'] }],
@@ -21,10 +21,9 @@ router.get('/', async (req, res) => {
 // GET one product
 //The findByPk method obtains only a single entry from the table, using the provided primary key.
 // find a single product by its `id`
-// be sure to include its associated Category and Tag data
 router.get('/:id', (req, res) => {
   try {
-    const productData = await ProductTag.findByPk(req.params.id, {
+    const productData = await Product.findByPk(req.params.id, {
       include: [{ model: Category, attributes: ['category_name'] },
       { model: Tag, attributes: ['tag_name'] }],
     });
@@ -40,7 +39,7 @@ router.get('/:id', (req, res) => {
   }
 });
 
-// create new product
+// CREATE new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {

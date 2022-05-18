@@ -1,18 +1,40 @@
+//Activity 23 ORM
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
 // GET all categories
-router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+router.get('/', async (req, res) => {
+  try {
+    const CategoryData = await Category.findAll({
+      include:
+        { model: Product, attributes: ['product_name'] },
+    });
+    res.status(200).json(CategoryData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // GET one category by id
+// find one category by its `id` value
+// be sure to include its associated Products
 router.get('/:id', (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
+  try {
+    const CategoryData = await Category.findByPk(req.params.id, {
+      include: { model: Product, attributes: ['category_id'] },
+    });
+
+    if (!CategoryData) {
+      res.status(404).json({ message: 'No Products found with that Category!' });
+      return;
+    }
+
+    res.status(200).json(CategoryData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // POST a new category
