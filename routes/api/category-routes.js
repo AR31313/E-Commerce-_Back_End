@@ -39,12 +39,73 @@ router.get('/:id', (req, res) => {
 
 // POST a new category
 router.post('/', (req, res) => {
-  // create a new category
+  /* req.body should look like this:
+    {
+      category_name: "Basketballs",
+      Ids: [1, 2, 3, 4]
+    }
+  */
+  Category.create(req.body)
+    .then((Category) => {
+      // if there's Category tags, we need to create pairings to bulk create in the CategoryTag model
+      if (req.body.newCategory.length) {
+        const CategoryTagArr = req.body.Id.map((tag_id) => {
+          return {
+            category_name, id,
+          };
+        });
+        return CategoryTag.bulkCreate(CategoryTagArr);
+      }
+      // if no Category tags, just respond
+      res.status(200).json(Category);
+    })
+    .then((CategoryTagIds) => res.status(200).json(CategoryTagIds))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 // PUT update a category
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  // update Category data
+  Category.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((category) => {
+      // find all associated tags from category_Tag
+      return CategoryTag.findAll({ where: { category_name: req.params.id } });
+    })
+    .then((categoryTags) => {
+      // get list of current tag_ids
+      const categoryTagIds = categoryTags.map(({ category_name: }) => category_name: );
+      // create filtered list of new category_ids
+      const newCategoryTags = req.body.catIds
+        .filter((catIds) => !categoryTagIds.includes(catIds))
+        .map((tag_id) => {
+          return {
+            id: req.params.id,
+            category_name,
+          };
+        });
+      // figure out which ones to remove
+      const categoriesToRemove = categoryTags
+        .filter(({ catIds }) => !req.body.catIds.includes(catIds))
+        .map(({ id }) => id);
+
+      // run both actions
+      return Promise.all([
+        CategoryTag.destroy({ where: { id: categoriesToRemove } }),
+        CategoryTag.bulkCreate(newCategoryTags),
+      ]);
+    })
+    .then((updatedCategoryTags) => res.json(updatedCategoryTags))
+    .catch((err) => {
+      // console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 // DELETE a category by id
