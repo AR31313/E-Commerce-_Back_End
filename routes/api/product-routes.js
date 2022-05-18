@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 // GET one product
 //The findByPk method obtains only a single entry from the table, using the provided primary key.
 // find a single product by its `id`
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
       include: [{ model: Category, attributes: ['category_name'] },
