@@ -1,7 +1,5 @@
 # 13 Object-Relational Mapping (ORM): 
-E-Commerce Back End
-
-### Built the back end for an e-commerce site by modifying starter code.
+### E-Commerce Back End
 ---
 
 ## Getting Started
