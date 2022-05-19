@@ -37,6 +37,8 @@ Enter the command "npm start" to invoke the application
       (product_id: References the `Product` model's `id`.)
 ```
 
+### Screenshot:
+
 ---
 
 ## Installation
@@ -52,8 +54,12 @@ Run `npm run seed` to seed data to your database so that you can test your route
 
 ## The GitHub repository URL:
 
-## Walkthrough Video ink:
+https://ar31313.github.io/E-Commerce-_Back_End/
+
+## Walkthrough Video:
 
 - A walkthrough video that demonstrates the functionality of the e-commerce back end.
+
+---
 
 © 2022 Avi Rana. All Rights Reserved.
