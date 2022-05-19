@@ -12,7 +12,7 @@ Once database name, MySQL username, and MySQL password are added to an environme
 connect to the database using Sequelize.
 Run schema and seed commands.
 A development database will be created and is seeded with test data.
-- Enter the command "npm start" to invoke the application
+> Enter the command "npm start" to invoke the application
 
 ---
 
