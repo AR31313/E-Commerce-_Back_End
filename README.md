@@ -37,10 +37,10 @@ A development database will be created and is seeded with test data.
 ```
 
 ### Screenshots:
-![image](https://user-images.githubusercontent.com/96843377/169679196-92ef8287-3e57-4446-ac60-2036d53f1baf.png)
-
 
 ![image](https://user-images.githubusercontent.com/96843377/169679149-eba20a68-5835-413d-9ef2-67badd317ad2.png)
+![image](https://user-images.githubusercontent.com/96843377/169679233-290f15f1-31d4-4576-925f-c35da2dc3a7e.png)
+
 ---
 
 ## Installation
