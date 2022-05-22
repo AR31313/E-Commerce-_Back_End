@@ -60,9 +60,10 @@ User will need to use the [MySQL2](https://www.npmjs.com/package/mysql2) and [Se
 https://ar31313.github.io/E-Commerce-_Back_End/
 
 ## Walkthrough Video:
+https://user-images.githubusercontent.com/96843377/169679519-eb67847f-6379-4c54-82f8-469d07365d7c.mp4
 
 - A walkthrough video that demonstrates the functionality of the e-commerce back end.
-- https://drive.google.com/file/d/1Hs70wXsOKJqSPr9-D_Fc5AJNkOXjwn5e/view?usp=sharing
+ https://drive.google.com/file/d/1Hs70wXsOKJqSPr9-D_Fc5AJNkOXjwn5e/view?usp=sharing
 
 ---
 
