@@ -62,6 +62,7 @@ https://ar31313.github.io/E-Commerce-_Back_End/
 ## Walkthrough Video:
 
 - A walkthrough video that demonstrates the functionality of the e-commerce back end.
+- https://drive.google.com/file/d/1Hs70wXsOKJqSPr9-D_Fc5AJNkOXjwn5e/view?usp=sharing
 
 ---
 
